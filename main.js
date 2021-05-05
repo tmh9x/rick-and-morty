@@ -1,7 +1,8 @@
 import "./style.css";
-import { createElement } from "./utils/elements";
+import { createElement, removeAllChildren } from "./utils/elements";
 import { createCharacterElement } from "./components/character";
 import { getCharacters } from "./utils/api";
+import { debounce } from "./utils/timer";
 
 getCharacters().then((characters) => {
   const characterElements = characters.map(createCharacterElement);
@@ -26,6 +27,15 @@ const mainElement = createElement("main", {
           className: "input",
           placeholder: "Search character",
           autofocus: true,
+          oninput: debounce((event) => {
+            removeAllChildren(characterSection);
+
+            const search = event.target.value;
+            getCharacters(search).then((characters) => {
+              const characterElements = characters.map(createCharacterElement);
+              characterSection.append(...characterElements);
+            });
+          }, 300),
         }),
       ],
     }),
