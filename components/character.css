@@ -1,0 +1,14 @@
+.characterCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #a8dadc;
+  border: solid 2px #000;
+  border-radius: 3em;
+  padding: 1em;
+  margin: 0.5em;
+}
+
+.characterCard img {
+  width: 200px;
+  height: 200px;
+}
