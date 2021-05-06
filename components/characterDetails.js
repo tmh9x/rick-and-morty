@@ -1,26 +1,25 @@
-import "./character.css";
 import { createElement } from "../utils/elements";
+import styles from "./characterDetails.module.css";
 
-export function createCharacterElement({
-  id,
+export function createCharacterDetails({
   image,
   name,
+  gender,
   status,
   species,
   origin,
+  location,
 }) {
   return createElement("div", {
-    className: "characterCard",
+    className: styles.characterCard,
     children: [
       createElement("img", { src: image }),
-
-      createElement("a", {
-        href: `/details.html?id=${id}`,
-        children: [createElement("h2", { innerText: name })],
-      }),
+      createElement("h2", { innerText: name }),
+      createElement("p", { innerText: gender }),
       createElement("p", { innerText: status }),
       createElement("p", { innerText: species }),
       createElement("p", { innerText: origin.name }),
+      createElement("p", { innerText: location.name }),
     ],
   });
 }
